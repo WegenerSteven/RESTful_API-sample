@@ -7,14 +7,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //middleware
+app.use(express.json());
 app.use(bodyParser.json());
+
+//use item routes
+app.use('/items', itemRoutes);
 
 //connect to database
 
 connectDB();
-
-//use item routes
-app.use("/items", itemRoutes);
 
 //serve static files for the UI
 app.use(express.static("public"));

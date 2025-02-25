@@ -36,13 +36,18 @@ const updateItem = async (req, res) => {
 };
 
 //DELETE /items/:id
-const deleteItem = async (re, req) => {
+const deleteItem = async (req, res) => {
   try {
-    const deletedItem = await Item.findByIdAndDelete(req.params.id);
-    if (!deletedItem) return res.status(404).send("Item not found");
-    res.json(deletedItem);
+    const {id} = req.params;
+
+    const deletedItem = await Item.findByIdAndDelete(id);
+    if (!deletedItem) {
+      return res.status(404).send("Item not found");
+    }
+    res.status(200).json({message: 'Item deleted successfully'});
   } catch (err) {
-    res.status(400).send(err);
+    console.error(error);
+    res.status(500).json({message: 'Server error'});
   }
 };
 module.exports = {
