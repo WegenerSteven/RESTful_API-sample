@@ -1,31 +1,103 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Item Management</title>  
-    <link rel="stylesheet" href="style.css">  
-</head>  
-<body>  
-    <div class="container">  
-        <h1>Item Management</h1>  
-        <form id="item-form">  
-            <input type="hidden" id="item-id" />  
-            <input type="text" id="name" placeholder="Item Name" required />  
-            <input type="text" id="description" placeholder="Item Description" required />  
-            <button type="submit">Add Item</button>  
-        </form>  
-        <table id="item-table">  
-            <thead>  
-                <tr>  
-                    <th>Name</th>  
-                    <th>Description</th>  
-                    <th>Actions</th>  
-                </tr>  
-            </thead>  
-            <tbody id="items"></tbody>  
-        </table>  
-    </div>  
-    <script src="app.js"></script>  
-</body>  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Management</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #28a745; /* Green background */
+        color: white; /* Text color for readability */
+      }
+      .container {
+        margin-top: 20px;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.7
+        ); /* Darker background for the form */
+        padding: 20px;
+        border-radius: 10px;
+      }
+      th,
+      td {
+        text-align: center; /* Center align table text */
+      }
+      button {
+        margin: 0 5px; /* Space out buttons */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Inventory Management</h1>
+      <form id="item-form" class="mb-4">  
+        <input type="hidden" id="item-id" />  
+        <div class="form-row">  
+            <div class="form-group col-md-6">  
+                <label for="name">Item Name</label>  
+                <input type="text" id="name" class="form-control" placeholder="Item Name" required />  
+            </div>  
+            <div class="form-group col-md-3">  
+                <label for="quantity">Quantity</label>  
+                <input type="number" id="quantity" class="form-control" placeholder="Quantity" required />  
+            </div>  
+            <div class="form-group col-md-3">  
+                <label for="quantityUnit">Unit</label>  
+                <select id="quantityUnit" class="form-control" required>  
+                    <option value="" disabled selected>Select unit</option>  
+                    <option value="kg">Kilograms (kg)</option>  
+                    <option value="g">Grams (g)</option>  
+                    <option value="l">Liters (l)</option>  
+                    <option value="ml">Milliliters (ml)</option> 
+                    <option value="m">Units (u)</option> 
+                    <option value="pcs">Pieces (pcs)</option>  
+                </select>  
+            </div>  
+            <div class="form-group col-md-3">  
+                <label for="price">Price</label>  
+                <input type="number" id="price" class="form-control" placeholder="Price" step="0.01" required />  
+            </div>  
+        </div>  
+
+        <div class="form-group col-md-6">  
+            <label for="name">Description</label>  
+            <input type="text" id="description" class="form-control" placeholder="description" required />  
+        </div> 
+
+        <div class="form-group col-md-3">  
+            <label for="dateBought">Date Bought</label>  
+            <input type="date" id="dateBought" class="form-control" required />  
+        </div>  
+        <button type="submit" class="btn btn-light"><i class="fas fa-plus"></i> Add Item</button>  
+    </form>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Bought</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="items"></tbody>
+      </table>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>

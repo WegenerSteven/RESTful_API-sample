@@ -13,12 +13,21 @@ const getItems = async (req, res) => {
 
 //POST /items
 const addItem = async (req, res) => {
+  const {name, quantity, quantityUnit, price, description, dateBought} = req.body;
+  const newItem = new Item({
+    name,
+    quantity,
+    quantityUnit,
+    price,
+    description,
+    dateBought,
+  });
   try {
-    const newItem = new Item(req.body);
     await newItem.save();
     res.status(201).json(newItem);
   } catch (err) {
-    res.status(400).send(err);
+    console.error(err);
+    res.status(500).json({message: 'Error adding item'});
   }
 };
 
